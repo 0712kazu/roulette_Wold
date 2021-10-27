@@ -1,0 +1,262 @@
+UserID,国・地域名,英語表記,ISO3,所属,色塗分け
+4,アフガニスタン,Afghanistan,AFG,,8
+8,アルバニア,Albania,ALB,,2
+10,南極,,ATA,,9
+12,アルジェリア,Algeria,DZA,,2
+20,アンドラ,Andorra,AND,,8
+24,アンゴラ,Angola,AGO,,7
+28,アンティグア・バーブーダ,Antigua and Barbuda,ATG,,2
+31,アゼルバイジャン,Azerbaijan,AZE,,7
+32,アルゼンチン,Argentina,ARG,,2
+36,オーストラリア,Australia,AUS,,1
+40,オーストリア,Austria,AUT,,1
+44,バハマ,Bahamas,BHS,,1
+48,バーレーン,Bahrain,BHR,,6
+50,バングラデシュ,Bangladesh,BGD,,6
+51,アルメニア,Armenia,ARM,,3
+52,バルバドス,Barbados,BRB,,6
+56,ベルギー,Belgium,BEL,,8
+60,バミューダ諸島,Bermuda Islands,BMU,イギリス,3
+64,ブータン,Bhutan,BTN,,7
+68,ボリビア,Bolivia,BOL,,6
+70,ボスニア・ヘルツェゴビナ,Bosnia and Herzegovina,BIH,,1
+72,ボツワナ,Botswana,BWA,,2
+76,ブラジル,Brazil,BRA,,3
+84,ベリーズ,Belize,BLZ,,1
+90,ソロモン諸島,Solomon Islands,SLB,,6
+92,イギリス領バージン諸島,British Virgin Islands,VGB,イギリス,3
+96,ブルネイ・ダルサラーム,Brunei Darussalam,BRN,,1
+100,ブルガリア,Bulgaria,BGR,,2
+104,ミャンマー,Myanmar,MMR,,7
+108,ブルンジ,Burundi,BDI,,2
+112,ベラルーシ,Belarus,BLR,,3
+116,カンボジア,Cambodia,KHM,,1
+120,カメルーン,Cameroon,CMR,,4
+124,カナダ,Canada,CAN,,5
+132,カーボベルデ,Cape Verde,CPV,,6
+136,ケイマン諸島,Cayman Islands,CYM,イギリス,3
+140,中央アフリカ,Central Africa,CAF,,6
+144,スリランカ,Sri Lanka,LKA,,1
+148,チャド,Chad,TCD,,7
+152,チリ,Chile,CHL,,4
+156,中華人民共和国,Peoples Republic of China,CHN,,4
+170,コロンビア,Colombia,COL,,8
+174,コモロ,Comoros,COM,,6
+178,コンゴ共和国,Congo,COG,,2
+180,コンゴ民主共和国,Democratic Republic of the Congo,COD,,3
+184,クック諸島,Cook Islands,COK,,2
+188,コスタリカ,Costa Rica,CRI,,7
+191,クロアチア,Croatia,HRV,,4
+192,キューバ,Cuba,CUB,,2
+196,キプロス,Cyprus,CYP,,7
+203,チェコ,Czech,CZE,,7
+204,ベナン,Benin,BEN,,7
+208,デンマーク,Denmark,DNK,,2
+212,ドミニカ国,Commonwealth of Dominica,DMA,,3
+214,ドミニカ共和国,Dominican Republic,DOM,,6
+218,エクアドル,Ecuador,ECU,,7
+222,エルサルバドル,El Salvador,SLV,,2
+226,赤道ギニア,Equatorial Guinea,GNQ,,8
+231,エチオピア,Ethiopia,ETH,,2
+232,エリトリア,Eritrea,ERI,,4
+233,エストニア,Estonia,EST,,2
+242,フィジー,Fiji,FJI,,6
+246,フィンランド,Finland,FIN,,6
+250,フランス,France,FRA,,6
+254,フランス領ギアナ,French Guiana,GUF,フランス,6
+258,フランス領ポリネシア,French Polynesia,PYF,フランス,6
+262,ジブチ,Djibouti,DJI,,1
+266,ガボン,Gabon,GAB,,5
+268,ジョージア,Georgia,GEO,,1
+270,ガンビア,Gambia,GMB,,7
+276,ドイツ,Germany,DEU,,5
+288,ガーナ,Ghana,GHA,,2
+296,キリバス,Kiribati,KIR,,6
+300,ギリシャ,Greece,GRC,,3
+304,グリーンランド,Greenland,GRL,デンマーク,2
+308,グレナダ,Grenada,GRD,,6
+320,グアテマラ,Guatemala,GTM,,7
+324,ギニア,Guinea,GIN,,3
+328,ガイアナ,Guyana,GUY,,5
+332,ハイチ,Haiti,HTI,,7
+336,バチカン,Vatican,VAT,,2
+340,ホンジュラス,Honduras,HND,,3
+344,香港,Hong Kong,HKG,中華人民共和国,4
+348,ハンガリー,Hungary,HUN,,3
+352,アイスランド,Iceland,ISL,,7
+356,インド,India,IND,,5
+360,インドネシア,Indonesia,IDN,,6
+364,イラン,Iran,IRN,,4
+368,イラク,Iraq,IRQ,,6
+372,アイルランド,Ireland,IRL,,6
+376,イスラエル,Israel,ISR,,1
+380,イタリア,Italy,ITA,,8
+384,コートジボワール,Cote d'Ivoire,CIV,,8
+388,ジャマイカ,Jamaica,JAM,,5
+392,日本,Japan,JPN,,10
+398,カザフスタン,Kazakhstan,KAZ,,3
+400,ヨルダン,Jordan,JOR,,2
+404,ケニア,Kenya,KEN,,6
+408,朝鮮民主主義人民共和国,Democratic Peoples Republic of Korea,PRK,,3
+410,大韓民国,Republic of Korea,KOR,,2
+412,コソボ,Kosovo,,,4
+414,クウェート,Kuwait,KWT,,1
+417,キルギス,Kyrgyzstan,KGZ,,8
+418,ラオス,Laos,LAO,,8
+422,レバノン,Lebanon,LBN,,7
+426,レソト,Lesotho,LSO,,7
+428,ラトビア,Latvia,LVA,,5
+430,リベリア,Liberia,LBR,,2
+434,リビア,Libya,LBY,,8
+438,リヒテンシュタイン,Liechtenstein,LIE,,2
+440,リトアニア,Lithuania,LTU,,7
+442,ルクセンブルク,Luxembourg,LUX,,2
+446,マカオ,Macau,MAC,中華人民共和国,4
+450,マダガスカル,Madagascar,MDG,,3
+454,マラウイ,Malawi,MWI,,7
+458,マレーシア,Malaysia,MYS,,3
+462,モルディブ,Maldives,MDV,,4
+466,マリ,Mali,MLI,,6
+470,マルタ,Malta,MLT,,6
+478,モーリタニア,Mauritania,MRT,,8
+480,モーリシャス,Mauritius,MUS,,1
+484,メキシコ,Mexico,MEX,,8
+492,モナコ,Monaco,MCO,,2
+496,モンゴル,Mongolia,MNG,,6
+498,モルドバ,Moldova,MDA,,8
+499,モンテネグロ,Montenegro,MNE,,6
+500,モントセラト,Montserrat,MSR,イギリス,3
+504,モロッコ,Morocco,MAR,,5
+508,モザンビーク,Mozambique,MOZ,,2
+512,オマーン,Oman,OMN,,7
+516,ナミビア,Namibia,NAM,,8
+520,ナウル,Nauru,NRU,,6
+524,ネパール,Nepal,NPL,,3
+528,オランダ,Netherlands,NLD,,2
+531,キュラソー,Curacao,CUW,オランダ,2
+533,アルバ,Aruba,ABW,オランダ,2
+534,シント・マールテン,Sint Maarten,SXM,オランダ,2
+540,ニューカレドニア,New Caledonia,NCL,フランス,6
+548,バヌアツ,Vanuatu,VUT,,3
+554,ニュージーランド,New Zealand,NZL,,2
+558,ニカラグア,Nicaragua,NIC,,4
+562,ニジェール,Niger,NER,,3
+566,ナイジェリア,Nigeria,NGA,,5
+578,ノルウェー,Norway,NOR,,1
+583,ミクロネシア連邦,Micronesia,FSM,,4
+584,マーシャル諸島,Marshall Islands,MHL,,5
+585,パラオ,Palau,PLW,,3
+586,パキスタン,Pakistan,PAK,,6
+591,パナマ,Panama,PAN,,1
+598,パプアニューギニア,Papua New Guinea,PNG,,5
+600,パラグアイ,Paraguay,PRY,,5
+604,ペルー,Peru,PER,,1
+608,フィリピン,Philippines,PHL,,7
+616,ポーランド,Poland,POL,,2
+620,ポルトガル,Portugal,PRT,,8
+624,ギニアビサウ,Guinea-Bissau,GNB,,1
+626,東ティモール,Timor-Leste,TLS,,2
+630,プエルトリコ,Puerto Rico,PRI,アメリカ合衆国,6
+634,カタール,Qatar,QAT,,2
+642,ルーマニア,Romania,ROU,,6
+643,ロシア連邦,Russia,RUS,,8
+646,ルワンダ,Rwanda,RWA,,7
+659,セントクリストファー・ネービス,St. Christopher and Nevis,KNA,,1
+660,アンギラ,Anguilla,AIA,イギリス,3
+662,セントルシア,Saint Lucia,LCA,,4
+670,セントビンセント及びグレナディーン諸島,St. Vincent and the Grenadines,VCT,,7
+674,サンマリノ,San Marino,SMR,,2
+678,サントメ・プリンシペ,Sao Tome and Principe,STP,,6
+682,サウジアラビア,Saudi Arabia,SAU,,3
+686,セネガル,Senegal,SEN,,5
+688,セルビア,Serbia,SRB,,5
+690,セーシェル,Seychelles,SYC,,7
+694,シエラレオネ,Sierra Leone,SLE,,7
+702,シンガポール,Singapore,SGP,,7
+703,スロバキア,Slovakia,SVK,,8
+704,ベトナム,Viet Nam,VNM,,5
+705,スロベニア,Slovenia,SVN,,7
+706,ソマリア,Somalia,SOM,,8
+710,南アフリカ共和国,South Africa,ZAF,,5
+716,ジンバブエ,Zimbabwe,ZWE,,6
+724,スペイン,Spain,ESP,,1
+728,南スーダン,South Sudan,SSD,,4
+729,スーダン,Sudan,SDN,,5
+732,西サハラ,Western Sahara,ESH,,0
+740,スリナム,Suriname,SUR,,4
+748,エスワティニ,Eswatini,SWZ,,6
+752,スウェーデン,Sweden,SWE,,8
+756,スイス,Switzerland,CHE,,3
+760,シリア,Syria,SYR,,8
+762,タジキスタン,Tajikistan,TJK,,7
+764,タイ,Thailand,THA,,2
+768,トーゴ,Togo,TGO,,8
+776,トンガ,Tonga,TON,,1
+780,トリニダード・トバゴ,Trinidad and Tobago,TTO,,8
+784,アラブ首長国連邦,Arab Emirates,ARE,,5
+788,チュニジア,Tunisia,TUN,,1
+792,トルコ,Turkey,TUR,,5
+795,トルクメニスタン,Turkmenistan,TKM,,2
+796,タークス・カイコス諸島,Turks and Caicos Islands,TCA,イギリス,3
+798,ツバル,Tuvalu,TUV,,7
+800,ウガンダ,Uganda,UGA,,1
+804,ウクライナ,Ukraine,UKR,,1
+807,北マケドニア,North Macedonia,MKD,,1
+818,エジプト,Egypt,EGY,,6
+826,イギリス,United Kingdom,GBR,,3
+834,タンザニア,Tanzania,TZA,,5
+840,アメリカ合衆国,United States of America,USA,,6
+854,ブルキナファソ,Burkina Faso,BFA,,1
+858,ウルグアイ,Uruguay,URY,,7
+860,ウズベキスタン,Uzbekistan,UZB,,1
+862,ベネズエラ,Venezuela,VEN,,2
+882,サモア,Samoa,WSM,,6
+887,イエメン,Yemen,YEM,,2
+894,ザンビア,Zambia,ZMB,,1
+9002,BES諸島,BES Islands,BES,オランダ,2
+9005,グアドループ,Guadeloupe,GLP,フランス,6
+9006,グアム,Guam,GUM,アメリカ合衆国,6
+9007,ココス（キーリング）諸島,Cocos (Keeling) Islands,CCK,オーストラリア,1
+9008,フォークランド（マルビナス）諸島,Falkland Islands (Malvinas),FLK,未定,0
+9009,サン・バルテルミー,Saint Barthelemy,BLM,フランス,6
+9010,サンピエール島・ミクロン島,Saint Pierre and Miquelon,SPM,フランス,6
+9011,ジブラルタル,Gibraltar,GIB,イギリス,3
+9013,セントヘレナ・アセンション・トリスタンダクーニャ,Saint Helena Ascension and Tristan da Cunha,SHN,イギリス,3
+9014,スバールバル諸島・ヤンマイエン島,Svalbard and Jan Mayen,SJM,ノルウェー,1
+9016,サン・マルタン,Saint Martin,MAF,フランス,6
+9017,トケラウ,Tokelau,TKL,ニュージーランド,2
+9019,ノーフォーク島,Norfolk Island,NFK,オーストラリア,1
+9020,フェロー諸島,Faroe Islands,FRO,デンマーク,2
+9021,マヨット,Mayotte,MYT,フランス,6
+9023,マルティニーク,Martinique,MTQ,フランス,6
+9024,レユニオン,Reunion,REU,フランス,6
+9026,ウォリス・フツナ諸島,Wallis and Futuna Islands,WLF,フランス,6
+9027,台湾,Taiwan,TWN,,4
+9028,アメリカ領サモア,American Samoa,ASM,アメリカ合衆国,6
+9029,アメリカ領バージン諸島,United States Virgin Islands,VIR,アメリカ合衆国,6
+9030,北マリアナ諸島,Northern Mariana Islands,MNP,アメリカ合衆国,6
+9031,ピトケアン諸島,Pitcairn Islands,PCN,イギリス,3
+9032,サウスジョージア・サウスサンドウィッチ諸島,South Georgia and the South Sandwich Islands,SGS,イギリス,3
+9033,ブーベ島,Bouvet Island,BVT,ノルウェー,1
+9034,チャゴス諸島,Chagos Archipelago,,イギリス,3
+9035,ディエゴガルシア島,Diego Garcia,,イギリス,3
+9036,クリッパートン島,Clipperton Island,,フランス,6
+9037,ユローパ島,Europa Island,,フランス,6
+9038,アムステルダム島,Amsterdam Island,ATF,フランス,6
+9039,ケルゲレン諸島,Kerguelen Islands,ATF,フランス,6
+9040,クロゼ諸島,Crozet Islands,ATF,フランス,6
+9041,プリンス・エドワード諸島,Prince Edward Islands,,南アフリカ共和国,5
+9042,ハード島・マクドナルド諸島,Heard Island and McDonald Islands,HMD,オーストラリア,1
+9043,パレスチナ,Palestine,PSE,,0
+10003,ニウエ,Niue,NIU,,1
+99986,南沙諸島,,,,0
+99987,西紗諸島,,,,0
+99988,カシミール,,,,0
+99989,ビル・タウィール,,,,0
+99990,アビエ,,,,0
+99991,ハラーイブ・トライアングル,,,,0
+99993,千島列島,,,,0
+99994,南樺太,,,,0
+99996,カシミール,,,,0
+99997,カシミール,,,,0
+99999,国境未確定,,,,0
