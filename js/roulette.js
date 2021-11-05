@@ -14,30 +14,30 @@ class SetMyMapClass {
     this.geojson_poly = L.geoJSON(countryPoly, {
       //ポリゴンデータの読み込み
       style: this.style_poly,
-      onEachFeature: (feature, layer) => {
-        // console.log(layer)
-        // console.log(feature)
-        this.onEachFeature(feature, layer)
+      _onEachFeature: (feature, layer) => {
+        this._onEachFeature(feature, layer)
         layer.on({
-          mouseover: (e) => this.highlightFeature(e),
-          mouseout: () => this.resetHighlight(),
-          click: (e) => this.zoomClickFeature(e),
-        }) // <<-----------------------
+          mouseover: (e) => this._highlightFeature(e),
+          mouseout: () => this._resetHighlight(),
+          click: (e) => this._zoomClickFeature(e),
+        })
       },
     }).addTo(this.mymap)
     console.log(this.geojson_poly)
     L.control.zoomLabel({ position: "bottomleft" }).addTo(this.mymap)
     this.fitBtnEvent = document.getElementById("zoomstyle")
     this.fitBtnEvent.addEventListener("click", () => {
-      this.mymap.setView([43.505, -0.09], 2)
+      this.setViewCenter()
     })
   }
 
-  highlightFeature(e) {
-    //マウスホバーしたポリゴンに対して境界線の強調表示を行う
-    let layer = e.target // <<-----------------------
-    layer.setStyle({
-      //マウスホバーしたら太字の枠線をつける
+  setViewCenter(){
+    this.mymap.setView([43.505, -0.09], 2)
+  }
+
+  _highlightFeature(e) {//マウスホバーしたポリゴンに対して境界線の強調表示を行う
+    let layer = e.target
+    layer.setStyle({//マウスホバーしたら太字の枠線をつける
       stroke: true,
       color: "#666",
       weight: 4,
@@ -48,20 +48,20 @@ class SetMyMapClass {
     }
   }
 
-  onEachFeature(feature, layer) {
+  _onEachFeature(feature, layer) {
     // console.log("onEach")
     if (feature.properties && feature.properties.jp_name) {
       layer.bindPopup(feature.properties.jp_name)
     }
   }
 
-  resetHighlight() {
+  _resetHighlight() {
     this.geojson_poly.setStyle({
       weight: 1,
     })
-  } // <<-----------------------
+  } 
 
-  async zoomClickFeature(e) {//クリックした国をハイライトしてズーム
+  async _zoomClickFeature(e) {//クリックした国をハイライトしてズーム
     this.geojson_poly.setStyle({
       fillOpacity: 0.6,
     })
@@ -71,7 +71,6 @@ class SetMyMapClass {
     })
     return await 
     this.mymap.setView([e.target.feature.properties.lat, e.target.feature.properties.lon],4) 
-      
   }
 }
 const SetMyMap = new SetMyMapClass()
@@ -82,82 +81,67 @@ class SelectCountries {
     this.roulette = null
     this.text = null
     this.jsonObj = null
-    this.selectCountry = null
+    this.selectCountryName = null
     this.marker = null
-    this.makeCountryList()
+    this._makeCountryList()
     this.roulette = document.getElementById("roulette")//国名が表示される場所
     this.belong = document.getElementById("belongAnswer") //属国が表示される場所
-
   }
 
-  //geojson_polyから国名を取得してリスト化
-  makeCountryList() {
+  _makeCountryList() {//geojson_polyから国名を取得してリスト化
     this.countryNamesBefore = countryPoly.features
-    //国名が入っていないポリゴンは除外する。
-      .map((feature) => {
+      .map((feature) => {//国名が入っていないポリゴンは除外する。
         if (feature.properties.jp_name != null) {
           return feature.properties.jp_name
         }
       })
-      .filter((feature) => feature)
-      //重複を削除
+      .filter((feature) => feature)//重複を削除
     this.countryList = this.countryNamesBefore.filter(function (x, i, self) {
       return self.indexOf(x) === i
     })
     this.countryUltimateList = this.countryList.slice()
-    // console.log(this.countryUltimateList)
   }
 
-  //マーカーを表示
-  addMarker(lat, lon) {
-    this.marker = L.marker([lat, lon], { opacity: 0.8 }).addTo(SetMyMap.mymap) 
-  }
-
-  selectCountries() {
+  _getCountryNum(){
     this.selectNum = Math.floor(Math.random() * this.countryUltimateList.length) //リストをランダムに選択
-    this.selectCountry = String(this.countryUltimateList[this.selectNum]) //選ばれた国名をリストから文字列で変数に代入
-    this.roulette.textContent = `${this.selectCountry}` //国名を画面に表示させる。
-    this.selectCountryProperties = countryPoly.features.find((feature) => {
-      return feature.properties.jp_name === this.selectCountry
-    })
-    if (this.selectCountryProperties) {
-      this.addMarker(
-        this.selectCountryProperties.properties.lat,
-        this.selectCountryProperties.properties.lon
-      )
-    }
+  }
+  _dispCountryNameOnScreen(){
+    this.roulette.textContent = `${this.selectCountryName}` //国名を画面に表示させる。
   }
 
-  lastSelectcountry() {
-    this.rondomNum = Math.floor(Math.random() * this.countryUltimateList.length)//国名をランダム
-    this.selectCountry = this.countryUltimateList.splice(this.rondomNum,1)[0] 
-    this.roulette.textContent = `${this.selectCountry}` //国名を画面に表示させる。
-    // console.log(this.selectCountry)
-    this.selectCountryProperties = countryPoly.features.find((feature) => {
-      return feature.properties.jp_name === this.selectCountry
-    })
-    // console.log(this.selectCountryProperties)
+  _dispBelongNameOnScreen(){//属国を画面に表示させる。
     this.selectCountryBelong = this.selectCountryProperties.properties.belong
     if (this.selectCountryProperties.properties.belong != null) {
-      this.belong.textContent =
-        `${this.selectCountryProperties.properties.belong}` + `領` //国名を画面に表示させる。
+      this.belong.textContent =`${this.selectCountryProperties.properties.belong}` + `領` 
     }
-    this.addMarker(
-      this.selectCountryProperties.properties.lat,
-      this.selectCountryProperties.properties.lon
-    )
   }
 
-  checkLastCountryList() {
+  _getSelectCountryProperties(){
+    this.selectCountryProperties = countryPoly.features.find((feature) => {
+      return feature.properties.jp_name === this.selectCountryName
+    })
+  }
+  _getSelectCountryName(){
+    this.selectCountryName = this.countryUltimateList[this.selectNum] //選ばれた国名をリストから文字列で変数に代入
+  }
+
+  _addMarker() {//マーカーを表示
+    this.marker = L.marker(
+      [this.selectCountryProperties.properties.lat,
+      this.selectCountryProperties.properties.lon], 
+      { opacity: 0.8 }
+      ).addTo(SetMyMap.mymap) 
+  }
+
+  _checkLastCountryList() {
     if (this.countryUltimateList.length === 0) {
       this.countryUltimateList = this.countryList.slice()
     }
   }
-
-  changeColorLastSelectPoly() {
-    this.lastSelectcountry()
+  //ランダムに国を選んでその属性と同じポリゴンの色を変える。
+  _changeColorSelectPoly() {
     SetMyMap.geojson_poly.eachLayer((layer) => {
-      if (layer.feature.properties.jp_name == this.selectCountry) {
+      if (layer.feature.properties.jp_name == this.selectCountryName) {
         layer.setStyle({
           fillColor: "red",
           fillOpacity: 1,
@@ -165,36 +149,36 @@ class SelectCountries {
       }
     })
   }
-  //ランダムに国を選んでその属性と同じポリゴンの色を変える。
-  changeColorSelectPoly() {
+
+  selectCountries() {
+    this._getCountryNum()
+    this._getSelectCountryName()
+    this._dispCountryNameOnScreen()
+    this._getSelectCountryProperties()
+    this._addMarker()
+    this._changeColorSelectPoly()
+  }
+  
+  selectLastcountry() { 
     this.selectCountries()
-    SetMyMap.geojson_poly.eachLayer((layer) => {
-      if (layer.feature.properties.jp_name == this.selectCountry) {
-        layer.setStyle({
-          fillColor: "red",
-          fillOpacity: 1,
-        })
-      }
-    })
+    this.countryUltimateList.splice(this.selectNum,1)[0] 
+    this._dispBelongNameOnScreen()
+    this._checkLastCountryList()
   }
 
   viewLastcountry() {
-    this.roulette.textContent = "答え： " + `${this.selectCountry}` //国名を画面に表示させる。
+    this.roulette.textContent = "答え： " + `${this.selectCountryName}` //国名を画面に表示させる。
   }
-
 
   removeMarker() {
     if (this.marker) {
       this.marker.remove(SetMyMap.mymap)
-      // console.log('remove')
     }
   }
 
-  async clearColorSelectPoly() {
-    //つけた色を消す
+  async clearColorSelectPoly() {//つけた色を消す
     return await this.removeMarker(
       SetMyMap.geojson_poly.setStyle({
-        // stroke:false,
         weight: 1,
         fillOpacity: 0.6,
         fillColor: "gray",
@@ -204,15 +188,16 @@ class SelectCountries {
 
   clearRouletteText() {
     this.roulette.textContent = `` //国名を一旦消す。
+    this.belong.textContent = ``
   }
 
-  zoomLastSelectCountry(layer) {
+  zoomLastSelectedCountry(layer) {//セレクトされた国をズーム
     SetMyMap.geojson_poly.eachLayer((layer) => {
-      if (layer.feature.properties.jp_name == this.selectCountry) {
+      if (layer.feature.properties.jp_name == this.selectCountryName) {
         SetMyMap.mymap.setView(
           [layer.feature.properties.lat, layer.feature.properties.lon],
           4
-        ) //セレクトされた国をズーム
+        ) 
       }
     })
   }
@@ -236,7 +221,7 @@ class SelectCountries {
   }
 }
 
-const selectCtyInstance = new SelectCountries()
+const selectcountryInstance = new SelectCountries()
 
 class AudioClass {
   constructor() {
@@ -247,66 +232,6 @@ class AudioClass {
     this.musicCountDown = new Audio("audio/think_part2.mp3")
     this.loop = null
     this.vl = 0.3
-    this.btn = document.getElementById("btn_id")
-    this.speacker.addEventListener("click", () => {
-      clearInterval(this.loop)
-      if (this.speacker.className === "speaker_on") {
-        this.offSpeaker() //disabledがtrueでもfalse でも同じなのでは判定はなし
-      } else {
-        if (this.btn.classList.contains("disabled") == true) {
-          this.onSpeaker()
-        } else {
-          this.onSpeaker()
-          this.playIntroMusic()
-        }
-      }
-    })
-
-    this.btn.addEventListener("click", () => {
-      //クリックしたらルーレットがはじまる。
-      this.selectMusic()
-      selectCtyInstance.removeMarker()
-      this.btn.classList.add("disabled")
-      SetMyMap.mymap.setView([43.505, -0.09], 2)
-      // layer.closePopup()
-      // this.btn.disabled = true;//ボタンdisable
-      document.querySelector("#belongAnswer").innerHTML = ""
-      this.interval = window.setInterval(() => {
-        selectCtyInstance.clearColorSelectPoly()
-        selectCtyInstance.changeColorSelectPoly()
-        // window.setTimeout(() =>{
-        //   selectCtyInstance.removeMarker();
-        // },50)
-      }, 80)
-
-      window.setTimeout(() => {
-        //カウントダウンが始まる
-        clearInterval(this.interval)
-        // voiceOn();
-        // this.musicCountDown.play();
-        selectCtyInstance.clearColorSelectPoly()
-        selectCtyInstance.removeMarker()
-        selectCtyInstance.changeColorLastSelectPoly()
-        selectCtyInstance.countDown()
-        selectCtyInstance.clearRouletteText()
-        selectCtyInstance.zoomLastSelectCountry()
-
-        window.setTimeout(() => {
-          //答えが出てもとに戻る
-          this.btn.classList.remove("disabled")
-          // this.btn.disabled = false;
-          // selectCtyInstance.selectCountries();
-          selectCtyInstance.viewLastcountry()
-          selectCtyInstance.checkLastCountryList()
-          SetMyMap.mymap.setView([43.505, -0.09], 2)
-          // recognition.stop()
-          clearInterval(this.loop)
-          if (this.speacker.className === "speaker_on") {
-            this.playIntroMusic()
-          }
-        }, 5000)
-      }, 2000)
-    })
   }
 
   offSpeaker() {
@@ -351,22 +276,23 @@ class AudioClass {
     this.musicCountDown.volume = 0.25
   }
 
-  selectMusicPlay() {
+  
+  _selectTimeMusicPlay() {
     this.musicSelected.currentTime = 0
     this.musicSelected.play()
   }
 
-  selectMusic() {
+  async _setCountdownMusic(){//chrome用エラー回避（play()とpause()は同時に書かない）。
+    return await this.musicCountDown.pause(
+      this.musicCountDown.play()
+    )}
+
+  selectTimeMusic() {
     this.musicIntro.muted = true
-    this.musicCountDown.play()
+    this._setCountdownMusic()
     this.musicCountDown.muted = true
-    // this.musicCountDown.pause();
     this.musicCountDown.currentTime = 0
-    window.setTimeout(() => {
-      //chrome用エラー回避（play()とpause()は同時に書かない）。
-      this.musicCountDown.pause()
-    }, 1)
-    this.selectMusicPlay()
+    this._selectTimeMusicPlay()
     if (this.speacker.className === "speaker_on") {
       this.typeCountVolUp()
     } else {
@@ -380,3 +306,65 @@ class AudioClass {
 }
 
 const audio = new AudioClass()
+
+class RunTheApp{
+  constructor() {
+    this.btn = document.getElementById("btn_id")
+    this.speacker = document.getElementById("speaker_icon") //スピーカーのアイコンの読み込み
+    this._rouletteBtnEvents()
+    this._speakerBtnEvents()
+  }
+  _speakerBtnEvents(){
+    this.speacker.addEventListener("click", () => {
+      clearInterval(audio.loop)
+      if (this.speacker.className === "speaker_on") {
+        audio.offSpeaker() //disabledがtrueでもfalse でも同じなのでは判定はなし
+      } else {
+        if (this.btn.classList.contains("disabled") == true) {
+          audio.onSpeaker()
+        } else {
+          audio.onSpeaker()
+          audio.playIntroMusic()
+        }
+      }
+    })
+  }
+  
+  _rouletteBtnEvents(){
+    this.btn.addEventListener("click", () => {//クリックしたらルーレットがはじまる。
+      audio.selectTimeMusic()
+      selectcountryInstance.removeMarker()
+      selectcountryInstance.clearRouletteText()
+      this.btn.classList.add("disabled")
+      SetMyMap.setViewCenter()
+      this.interval = window.setInterval(() => {
+        selectcountryInstance.clearColorSelectPoly()
+        selectcountryInstance.selectCountries()
+      }, 80)
+  
+      window.setTimeout(() => {
+        //カウントダウンが始まる
+        clearInterval(this.interval)
+        selectcountryInstance.clearColorSelectPoly()
+        selectcountryInstance.removeMarker()
+        selectcountryInstance.selectLastcountry()
+        selectcountryInstance.countDown()
+        selectcountryInstance.clearRouletteText()
+        selectcountryInstance.zoomLastSelectedCountry()
+  
+        window.setTimeout(() => {
+          //答えが出てもとに戻る
+          this.btn.classList.remove("disabled")
+          selectcountryInstance.viewLastcountry()
+          SetMyMap.setViewCenter()
+          clearInterval(audio.loop)
+          if (this.speacker.className === "speaker_on") {
+            audio.playIntroMusic()
+          }
+        }, 5000)
+      }, 2000)
+    })
+  }
+}
+
+const runApp = new RunTheApp()
