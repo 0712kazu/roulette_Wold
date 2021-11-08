@@ -31,16 +31,19 @@ html, body {
 
 .zoom_feature_all_btn {
   position: absolute;
-  width: 30px;
-  height: 20px;
-  border: solid 1px;
+  width: 40px;
+  height: 30px;
+  /* border: solid 1px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #9e9a9a;
   border-radius: 4px;
   padding: 2px;
-  font-size: 12px;
+  font-size: 14px;
   color: #3c3d3e;
   font-weight: bold;
-  box-shadow: 2;
+  /* box-shadow: 2; */
   z-index: 303;
   text-align: center;
   cursor: pointer;
@@ -48,6 +51,55 @@ html, body {
   left: 1%;
   border: none;
   user-select: none;
+}
+
+.auto_play_btn {
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  /* border: solid 1px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9e9a9a;
+  border-radius: 4px;
+  padding: 2px;
+  font-size: 14px;
+  color: #3c3d3e;
+  font-weight: bold;
+  /* box-shadow: 2; */
+  z-index: 302;
+  text-align: center;
+  cursor: pointer;
+  top: 175px;
+  left: 1%;
+  border: none;
+  user-select: none;
+
+}
+.auto_stop_btn{
+  position: absolute;
+  width: 40px;
+  height: 30px;
+  /* border: solid 1px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9e9a9a;
+  border-radius: 4px;
+  padding: 2px;
+  font-size: 14px;
+  color: #3c3d3e;
+  font-weight: bold;
+  /* box-shadow: 2; */
+  z-index: 302;
+  text-align: center;
+  cursor: pointer;
+  top: 210px;
+  left: 1%;
+  border: none;
+  user-select: none;
+
 }
 
 #count_down {

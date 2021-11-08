@@ -311,8 +311,12 @@ class RunTheApp{
   constructor() {
     this.btn = document.getElementById("btn_id")
     this.speacker = document.getElementById("speaker_icon") //スピーカーのアイコンの読み込み
+    this.autoPlayBtn = document.getElementById("auto_play") //autoボタンの読み込み
+    this.autoStopBtn = document.getElementById("auto_stop") //stopボタンの読み込み
     this._rouletteBtnEvents()
     this._speakerBtnEvents()
+    this._playAuto()
+    this._stopAuto()
   }
   _speakerBtnEvents(){
     this.speacker.addEventListener("click", () => {
@@ -329,42 +333,63 @@ class RunTheApp{
       }
     })
   }
+
+  _roulette(){
+    audio.selectTimeMusic()
+    selectcountryInstance.removeMarker()
+    selectcountryInstance.clearRouletteText()
+    this.btn.classList.add("disabled")
+    SetMyMap.setViewCenter()
+    this.interval = window.setInterval(() => {
+      selectcountryInstance.clearColorSelectPoly()
+      selectcountryInstance.selectCountries()
+    }, 80)
+
+    window.setTimeout(() => {
+      //カウントダウンが始まる
+      clearInterval(this.interval)
+      selectcountryInstance.clearColorSelectPoly()
+      selectcountryInstance.removeMarker()
+      selectcountryInstance.selectLastcountry()
+      selectcountryInstance.countDown()
+      selectcountryInstance.clearRouletteText()
+      selectcountryInstance.zoomLastSelectedCountry()
+
+      window.setTimeout(() => {
+        //答えが出てもとに戻る
+        this.btn.classList.remove("disabled")
+        selectcountryInstance.viewLastcountry()
+        SetMyMap.setViewCenter()
+        clearInterval(audio.loop)
+        if (this.speacker.className === "speaker_on") {
+          audio.playIntroMusic()
+        }
+      }, 5000)
+    }, 2000)
+  }
   
   _rouletteBtnEvents(){
     this.btn.addEventListener("click", () => {//クリックしたらルーレットがはじまる。
-      audio.selectTimeMusic()
-      selectcountryInstance.removeMarker()
-      selectcountryInstance.clearRouletteText()
-      this.btn.classList.add("disabled")
-      SetMyMap.setViewCenter()
-      this.interval = window.setInterval(() => {
-        selectcountryInstance.clearColorSelectPoly()
-        selectcountryInstance.selectCountries()
-      }, 80)
-  
-      window.setTimeout(() => {
-        //カウントダウンが始まる
-        clearInterval(this.interval)
-        selectcountryInstance.clearColorSelectPoly()
-        selectcountryInstance.removeMarker()
-        selectcountryInstance.selectLastcountry()
-        selectcountryInstance.countDown()
-        selectcountryInstance.clearRouletteText()
-        selectcountryInstance.zoomLastSelectedCountry()
-  
-        window.setTimeout(() => {
-          //答えが出てもとに戻る
-          this.btn.classList.remove("disabled")
-          selectcountryInstance.viewLastcountry()
-          SetMyMap.setViewCenter()
-          clearInterval(audio.loop)
-          if (this.speacker.className === "speaker_on") {
-            audio.playIntroMusic()
-          }
-        }, 5000)
-      }, 2000)
+      this._roulette()
     })
   }
+  
+  _playAuto(){
+    this.autoPlayBtn.addEventListener("click", () => {
+      this._roulette()
+      console.log('auto')
+      this.Playinterval = window.setInterval(() => {
+        this._roulette()
+      },10000)
+    })
+  }
+  
+  _stopAuto(){
+    this.autoStopBtn.addEventListener("click", () => {
+      console.log('stop')
+      clearInterval(this.Playinterval)
+    })
+    }
 }
 
 const runApp = new RunTheApp()
