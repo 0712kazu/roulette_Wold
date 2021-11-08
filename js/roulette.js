@@ -313,7 +313,7 @@ class Flags{
   }
   chengeFlags(iso2){
     if (iso2){
-      this.img.src = "img/flags/"+`${iso2}`+".png"
+      this.img.src = "img/flags/"+`${iso2}`+"@3x.png"
     }
   }
 }
@@ -355,7 +355,7 @@ class RunTheApp{
     this.interval = window.setInterval(() => {
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
-      flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
+      // flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     }, 80)
 
     window.setTimeout(() => {
