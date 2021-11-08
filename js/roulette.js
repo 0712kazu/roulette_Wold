@@ -313,7 +313,7 @@ class Flags{
   }
   chengeFlags(iso2){
     if (iso2){
-      this.img.src = "img/flags/"+`${iso2}`+"@3x.png"
+      this.img.src = "img/flags/"+`${iso2}`+".png"
     }
   }
 }
