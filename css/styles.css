@@ -102,6 +102,14 @@ html, body {
 
 }
 
+#flags{
+  position: absolute;
+  z-index: 305;
+  top: 340px;
+  height: 90px;
+  right: 1%;
+}
+
 #count_down {
   position: absolute;
   font-size: 200px;
@@ -196,5 +204,6 @@ a.btn-border {
   position: absolute;
   left: 27%;
   font-size: 4pt;
-  top: 85%;
+  top: 90%;
+  z-index: 305;
 }

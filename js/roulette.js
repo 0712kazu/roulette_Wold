@@ -307,6 +307,18 @@ class AudioClass {
 
 const audio = new AudioClass()
 
+class Flags{
+  constructor(){
+    this.img = document.getElementById("flags");
+  }
+  chengeFlags(iso2){
+    if (iso2){
+      this.img.src = "img/flags/"+`${iso2}`+"@3x.png"
+    }
+  }
+}
+const flags = new Flags
+
 class RunTheApp{
   constructor() {
     this.btn = document.getElementById("btn_id")
@@ -343,6 +355,7 @@ class RunTheApp{
     this.interval = window.setInterval(() => {
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
+      flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     }, 80)
 
     window.setTimeout(() => {
@@ -351,6 +364,7 @@ class RunTheApp{
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.removeMarker()
       selectcountryInstance.selectLastcountry()
+      flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
       selectcountryInstance.countDown()
       selectcountryInstance.clearRouletteText()
       selectcountryInstance.zoomLastSelectedCountry()
@@ -366,11 +380,14 @@ class RunTheApp{
         }
       }, 5000)
     }, 2000)
+    // return selectcountryInstance.selectCountryProperties.properties.iso2
   }
   
   _rouletteBtnEvents(){
     this.btn.addEventListener("click", () => {//クリックしたらルーレットがはじまる。
       this._roulette()
+      // console.log(selectcountryInstance.selectCountryProperties.properties.iso2)
+      // flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     })
   }
   
