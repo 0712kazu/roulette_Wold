@@ -355,7 +355,6 @@ class RunTheApp{
     this.interval = window.setInterval(() => {
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
-      // flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     }, 80)
 
     window.setTimeout(() => {
@@ -380,14 +379,11 @@ class RunTheApp{
         }
       }, 5000)
     }, 2000)
-    // return selectcountryInstance.selectCountryProperties.properties.iso2
   }
   
   _rouletteBtnEvents(){
     this.btn.addEventListener("click", () => {//クリックしたらルーレットがはじまる。
       this._roulette()
-      // console.log(selectcountryInstance.selectCountryProperties.properties.iso2)
-      // flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     })
   }
   
