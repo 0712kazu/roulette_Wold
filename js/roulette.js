@@ -316,6 +316,10 @@ class Flags{
       this.img.src = "img/flags/"+`${iso2}`+"@3x.png"
     }
   }
+
+  clearFlag(){
+    this.img.src = ""
+  }
 }
 const flags = new Flags
 
@@ -350,6 +354,7 @@ class RunTheApp{
     audio.selectTimeMusic()
     selectcountryInstance.removeMarker()
     selectcountryInstance.clearRouletteText()
+    flags.clearFlag()
     this.btn.classList.add("disabled")
     SetMyMap.setViewCenter()
     this.interval = window.setInterval(() => {
