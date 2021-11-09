@@ -14,7 +14,7 @@ class SetMyMapClass {
     this.geojson_poly = L.geoJSON(countryPoly, {
       //ポリゴンデータの読み込み
       style: this.style_poly,
-      _onEachFeature: (feature, layer) => {
+      onEachFeature: (feature, layer) => {
         this._onEachFeature(feature, layer)
         layer.on({
           mouseover: (e) => this._highlightFeature(e),
@@ -37,6 +37,7 @@ class SetMyMapClass {
 
   _highlightFeature(e) {//マウスホバーしたポリゴンに対して境界線の強調表示を行う
     let layer = e.target
+    console.log('hover')
     layer.setStyle({//マウスホバーしたら太字の枠線をつける
       stroke: true,
       color: "#666",
@@ -49,7 +50,7 @@ class SetMyMapClass {
   }
 
   _onEachFeature(feature, layer) {
-    // console.log("onEach")
+    console.log("onEach")
     if (feature.properties && feature.properties.jp_name) {
       layer.bindPopup(feature.properties.jp_name)
     }
@@ -313,7 +314,7 @@ class Flags{
   }
   chengeFlags(iso2){
     if (iso2){
-      this.img.src = "img/flags/"+`${iso2}`+"@3x.png"
+      this.img.src = `img/flags/${iso2}@3x.png`
     }
   }
 
@@ -360,7 +361,7 @@ class RunTheApp{
     this.interval = window.setInterval(() => {
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
-      flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
+      // flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     }, 80)
 
     window.setTimeout(() => {
