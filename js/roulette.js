@@ -360,6 +360,7 @@ class RunTheApp{
     this.interval = window.setInterval(() => {
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
+      flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     }, 80)
 
     window.setTimeout(() => {
@@ -395,7 +396,7 @@ class RunTheApp{
   _playAuto(){
     this.autoPlayBtn.addEventListener("click", () => {
       this._roulette()
-      console.log('auto')
+      // console.log('auto')
       this.Playinterval = window.setInterval(() => {
         this._roulette()
       },10000)
@@ -404,7 +405,7 @@ class RunTheApp{
   
   _stopAuto(){
     this.autoStopBtn.addEventListener("click", () => {
-      console.log('stop')
+      // console.log('stop')
       clearInterval(this.Playinterval)
     })
     }
