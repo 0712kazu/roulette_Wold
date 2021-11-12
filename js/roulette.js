@@ -37,7 +37,7 @@ class SetMyMapClass {
 
   _highlightFeature(e) {//マウスホバーしたポリゴンに対して境界線の強調表示を行う
     let layer = e.target
-    console.log('hover')
+    // console.log('hover')
     layer.setStyle({//マウスホバーしたら太字の枠線をつける
       stroke: true,
       color: "#666",
@@ -50,7 +50,7 @@ class SetMyMapClass {
   }
 
   _onEachFeature(feature, layer) {
-    console.log("onEach")
+    // console.log("onEach")
     if (feature.properties && feature.properties.jp_name) {
       layer.bindPopup(feature.properties.jp_name)
     }
@@ -90,6 +90,7 @@ class SelectCountries {
   }
 
   _makeCountryList() {//geojson_polyから国名を取得してリスト化
+    this.img = document.getElementById("flags");
     this.countryNamesBefore = countryPoly.features
       .map((feature) => {//国名が入っていないポリゴンは除外する。
         if (feature.properties.jp_name != null) {
@@ -101,6 +102,14 @@ class SelectCountries {
       return self.indexOf(x) === i
     })
     this.countryUltimateList = this.countryList.slice()
+
+    this.isoProperties = countryPoly.features.map((feature) => {
+      return feature.properties.iso2
+    })
+    for(let i = 0; i < this.isoProperties.length; i++){
+      console.log(this.isoProperties[i])
+      this.img.src = `img/flags/${this.isoProperties[i]}@3x.png`
+    }
   }
 
   _getCountryNum(){
@@ -313,10 +322,20 @@ class Flags{
     this.img = document.getElementById("flags");
   }
   chengeFlags(iso2){
-    if (iso2){
-      this.img.src = `img/flags/${iso2}@3x.png`
-    }
+    return new Promise((resolve, reject) => {
+      if (iso2) {
+        this.img.onload = () => {
+        resolve()
+        }
+        this.img.src = `img/flags/${iso2}@3x.png`
+      } else {
+        resolve()
+      }
+    })
   }
+  // if (iso2){
+  //   this.img.src = `img/flags/${iso2}@3x.png`
+  // }
 
   clearFlag(){
     this.img.src = ""
@@ -362,7 +381,7 @@ class RunTheApp{
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
       flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
-    }, 160)
+    }, 80)
 
     window.setTimeout(() => {
       //カウントダウンが始まる
