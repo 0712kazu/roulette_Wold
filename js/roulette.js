@@ -361,7 +361,7 @@ class RunTheApp{
     this.interval = window.setInterval(() => {
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
-      // flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
+      flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
     }, 160)
 
     window.setTimeout(() => {
