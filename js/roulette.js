@@ -362,7 +362,7 @@ class RunTheApp{
       selectcountryInstance.clearColorSelectPoly()
       selectcountryInstance.selectCountries()
       // flags.chengeFlags(selectcountryInstance.selectCountryProperties.properties.iso2)
-    }, 80)
+    }, 160)
 
     window.setTimeout(() => {
       //カウントダウンが始まる
