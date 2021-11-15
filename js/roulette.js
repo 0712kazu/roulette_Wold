@@ -312,8 +312,8 @@ const audio = new AudioClass()
 class Flags{
   constructor(){
     this.countryCodeList = []
-    // this.flugContainer = document.getElementById("flagContainer")
-    this.img = document.getElementsByClassName("flags");
+    this.flugContainer = document.getElementById("flug_conteiner")
+    // this.img = document.getElementsByClassName("flags");
     // console.log(this.img[0])
     this._makeCountryCodeList()
     this.imgDivDict = {}
@@ -349,7 +349,7 @@ class Flags{
     return new Promise((resolve) => {
       console.log(`${name} img.onload`)
       this.img_element = document.createElement("img")
-      this.img_element.className = `flags`
+      // this.img_element.className = `flags`
       // this.img_element.innerHTML = name
       resolve(this.img_element)
     })
@@ -358,8 +358,15 @@ class Flags{
   chengeFlags(iso2){
     // console.log(this.img_element)
     // this.img_element.src = `img/flags/${iso2}@3x.png`
-    this.img[0].replaceWith(this.imgDivDict[iso2])
-    console.log(this.img[0])
+    // this.flugContainer.removeChild(this.flugContainer.firstChild)
+    this.flugContainer.innerHTML = ''
+    // if (this.flugContainer.hasChildNodes()) {
+    //   this.flugContainer.removeChild(this.flugContainer.firstChild)
+    // } 
+    this.flugContainer.appendChild(this.imgDivDict[iso2])
+    // console.log(this.img[0])
+  }
+    // this.img[0].replaceWith(this.imgDivDict[iso2])
     // return new Promise((resolve, reject) => {
     //   if (iso2) {
 
@@ -384,7 +391,7 @@ class Flags{
     //     resolve()
     //   }
     // })
-  }
+  // }
   // if (iso2){
   //   this.img[0].src = `img/flags/${iso2}@3x.png`
   // }
@@ -426,7 +433,7 @@ class RunTheApp{
     audio.selectTimeMusic()
     selectcountryInstance.removeMarker()
     selectcountryInstance.clearRouletteText()
-    flags.clearFlag()
+    // flags.clearFlag()
     this.btn.classList.add("disabled")
     SetMyMap.setViewCenter()
     this.interval = window.setInterval(() => {
