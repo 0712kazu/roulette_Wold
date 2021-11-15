@@ -323,6 +323,8 @@ class Flags{
     // console.log(" ress", ress)
       ress.forEach((res, idx) => {
       this.imgDivDict[this.countryUltimateCodeList[idx]] = res
+      res.src = `img/flags/${this.countryUltimateCodeList[idx]}@3x.png`
+
       })
       console.log("imgs", this.imgDivDict)
     })
@@ -355,8 +357,8 @@ class Flags{
   
   chengeFlags(iso2){
     // console.log(this.img_element)
-    this.img_element.src = `img/flags/${iso2}@3x.png`
-    this.img[0].replaceWith(this.img_element)
+    // this.img_element.src = `img/flags/${iso2}@3x.png`
+    this.img[0].replaceWith(this.imgDivDict[iso2])
     console.log(this.img[0])
     // return new Promise((resolve, reject) => {
     //   if (iso2) {
