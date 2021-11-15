@@ -90,7 +90,6 @@ class SelectCountries {
   }
 
   _makeCountryList() {//geojson_polyから国名を取得してリスト化
-    this.img = document.getElementById("flags");
     this.countryNamesBefore = countryPoly.features
       .map((feature) => {//国名が入っていないポリゴンは除外する。
         if (feature.properties.jp_name != null) {
@@ -103,13 +102,6 @@ class SelectCountries {
     })
     this.countryUltimateList = this.countryList.slice()
 
-    this.isoProperties = countryPoly.features.map((feature) => {
-      return feature.properties.iso2
-    })
-    for(let i = 0; i < this.isoProperties.length; i++){
-      console.log(this.isoProperties[i])
-      this.img.src = `img/flags/${this.isoProperties[i]}@3x.png`
-    }
   }
 
   _getCountryNum(){
@@ -319,26 +311,69 @@ const audio = new AudioClass()
 
 class Flags{
   constructor(){
-    this.img = document.getElementById("flags");
+    this.countryCodeList = []
+    // this.flugContainer = document.getElementById("flagContainer")
+    this.img = document.getElementsByClassName("flags");
+    console.log(this.img[0])
+    this._makeCountryCodeList()
+    this.imgDivDict = {}
+    this.promises = this.countryUltimateCodeList.map((name) => this.makeImage(name))
+    console.log("promises", this.promises)
+    Promise.all(this.promises).then((ress) => {
+    // console.log(" ress", ress)
+      ress.forEach((res, idx) => {
+      this.imgDivDict[this.countryUltimateCodeList[idx]] = res
+      })
+      console.log("imgs", this.imgDivDict)
+    })
   }
+
+  _makeCountryCodeList() {//geojson_polyから国名を取得してリスト化
+    this.isoProperties = countryPoly.features.map((feature) => {//国名が入っていないポリゴンは除外する。
+      if (feature.properties.iso2 != null) {
+        return feature.properties.iso2
+      }
+    })
+      .filter((feature) => feature)//重複を削除
+    this.countryCodeList = this.isoProperties.filter(function (x, i, self) {
+      return self.indexOf(x) === i
+    })
+    this.countryUltimateCodeList = this.countryCodeList.slice()
+
+    console.log(this.countryUltimateCodeList)
+  }
+
+  makeImage(name) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log(`${name} img.onload`)
+        const div = document.createElement("div")
+        div.innerHTML = name
+        resolve(div)
+      }, 1000)
+    })
+  }
+
   chengeFlags(iso2){
     return new Promise((resolve, reject) => {
       if (iso2) {
-        this.img.onload = () => {
+
+        this.img[0].onload = () => {
         resolve()
         }
-        this.img.src = `img/flags/${iso2}@3x.png`
+        this.img[0].src = `img/flags/${iso2}@3x.png`
+        this.img[0].replaceWith(div_element)
       } else {
         resolve()
       }
     })
   }
   // if (iso2){
-  //   this.img.src = `img/flags/${iso2}@3x.png`
+  //   this.img[0].src = `img/flags/${iso2}@3x.png`
   // }
 
   clearFlag(){
-    this.img.src = ""
+    this.img[0].src = ""
   }
 }
 const flags = new Flags
