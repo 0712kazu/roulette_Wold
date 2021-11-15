@@ -314,7 +314,7 @@ class Flags{
     this.countryCodeList = []
     // this.flugContainer = document.getElementById("flagContainer")
     this.img = document.getElementsByClassName("flags");
-    console.log(this.img[0])
+    // console.log(this.img[0])
     this._makeCountryCodeList()
     this.imgDivDict = {}
     this.promises = this.countryUltimateCodeList.map((name) => this.makeImage(name))
@@ -345,28 +345,43 @@ class Flags{
 
   makeImage(name) {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(`${name} img.onload`)
-        const div = document.createElement("div")
-        div.innerHTML = name
-        resolve(div)
-      }, 1000)
+      console.log(`${name} img.onload`)
+      this.img_element = document.createElement("img")
+      this.img_element.className = `flags`
+      // this.img_element.innerHTML = name
+      resolve(this.img_element)
     })
   }
-
+  
   chengeFlags(iso2){
-    return new Promise((resolve, reject) => {
-      if (iso2) {
+    // console.log(this.img_element)
+    this.img_element.src = `img/flags/${iso2}@3x.png`
+    this.img[0].replaceWith(this.img_element)
+    console.log(this.img[0])
+    // return new Promise((resolve, reject) => {
+    //   if (iso2) {
 
-        this.img[0].onload = () => {
-        resolve()
-        }
-        this.img[0].src = `img/flags/${iso2}@3x.png`
-        this.img[0].replaceWith(div_element)
-      } else {
-        resolve()
-      }
-    })
+    //     this.div_element.onload = () => {
+    //     resolve()
+    //     }
+    //     this.div_element.src = `img/flags/${iso2}@3x.png`
+    //     this.img[0].replaceWith(div_element)
+    //   } else {
+    //     resolve()
+    //   }
+    // })
+    // return new Promise((resolve, reject) => {
+    //   if (iso2) {
+
+    //     this.img[0].onload = () => {
+    //     resolve()
+    //     }
+    //     this.img[0].src = `img/flags/${iso2}@3x.png`
+    //     // this.img[0].replaceWith(div_element)
+    //   } else {
+    //     resolve()
+    //   }
+    // })
   }
   // if (iso2){
   //   this.img[0].src = `img/flags/${iso2}@3x.png`
