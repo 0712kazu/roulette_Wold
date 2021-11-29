@@ -207,3 +207,79 @@ a.btn-border {
   top: 90%;
   z-index: 305;
 }
+
+/* --- 検索全体のBOX (サンプル用)--- */
+.searchArea{
+  position: absolute;
+  top: 2px;
+  right: 40%;
+  width          : 290px;              /* BOXの幅               */
+  height         : 24px;               /* BOXの高さ             */
+  margin         : auto;               /* サンプルを中心に寄せ  */
+  letter-spacing : 0.1em;              /* 文字間隔              */
+  font-weight    : bold;               /* 太字                  */
+  /* line-height    : 0;                  標準の行高さ          */
+  z-index: 305;
+}
+ 
+ /* --- テキスト入力欄のSTYLE設定 --- */
+.searchArea .searchText {
+  display        : block;              /* ブロック化            */
+  float          : left;               /* 横並び                */
+  box-sizing     : border-box;         /* 枠線,余白を含んだ長さ */
+  height         : 24px;               /* 入力の高さ            */
+  width          : 170px;              /* 入力の幅              */
+  margin         : 0;                  /* 外余白                */
+  padding        : 0 12px;             /* 内余白                */
+  border         : 2px solid #999999;  /* 枠線　幅,実践,色      */
+  border-radius  : 12px 0 0 12px;      /* 左上下の角丸          */
+  color          : #333;               /* 文字色                */
+  outline        : 0;                  /* 入力の薄い枠を非表示  */
+  font-size      : 12px;               /* フォントサイズ        */
+}
+ 
+ /* --- 検索ボタン欄のSTYLE設定 --- */
+.searchArea .searchButton {
+  float          : left;               /* 横並び                */
+  box-sizing     : border-box;         /* 枠線,余白を含んだ長さ */
+  height         : 24px;               /* 入力の高さ            */
+  margin         : 0;                  /* 外余白                */
+  padding        : 6px 10px;           /* 内余白                */
+  border         : none;               /* 枠線　幅,実践,色      */
+  border-radius  : 0 12px 12px 0;      /* 右上下の角丸          */
+  background     : #999999;            /* ボタンの色            */
+  color          : #fff;               /* 文字色                */
+  cursor         : pointer;            /* カーソル設定          */
+  line-height    : 12px;               /* 1行の高さ             */
+  font-size      : 12px;               /* フォントサイズ        */
+}
+
+ /* --- 検索ボタン欄にフォーカスか来たとき --- */
+.searchArea .searchText:focus {
+  background     : #cfe7ff;            /* フォーカス時の背景色  */
+}
+
+/* --- IEの入力エリア右側×消し -------------------------*/
+.searchArea .searchText::-ms-clear {
+  display        : none;               /* ×を消す              */
+}
+.searchResult {
+  position: absolute;
+  top: 25px;
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+}
+.resultItem {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.705);
+  padding-top: 10px;
+  /* height: 10px; */
+  font-weight: normal;
+  font-size: 10px;
+  margin: 0;
+}
+.errorText {
+  margin: 0;
+}
+

@@ -12,8 +12,8 @@ class SetMyMapClass {
       fillColor: "gray",
     }
     this.geojson_poly = L.geoJSON(countryPoly, {
-      //ポリゴンデータの読み込み
       style: this.style_poly,
+      //ポリゴンデータの読み込み
       onEachFeature: (feature, layer) => {
         this._onEachFeature(feature, layer)
         layer.on({
@@ -23,7 +23,7 @@ class SetMyMapClass {
         })
       },
     }).addTo(this.mymap)
-    console.log(this.geojson_poly)
+    // console.log(this.geojson_poly)
     L.control.zoomLabel({ position: "bottomleft" }).addTo(this.mymap)
     this.fitBtnEvent = document.getElementById("zoomstyle")
     this.fitBtnEvent.addEventListener("click", () => {
@@ -258,7 +258,7 @@ class AudioClass {
       // this.musicIntro.pause();
       this.introOn()
       // },36200)//intro.mp3の場合
-    }, 8740) //intro_part2.mp3の場合(BPM110:4小節)
+    }, 8748) //intro_part2.mp3の場合(BPM110:4小節)
   }
 
   introOn() {
@@ -318,15 +318,14 @@ class Flags{
     this._makeCountryCodeList()
     this.imgDivDict = {}
     this.promises = this.countryUltimateCodeList.map((name) => this.makeImage(name))
-    console.log("promises", this.promises)
+    // console.log("promises", this.promises)
     Promise.all(this.promises).then((ress) => {
     // console.log(" ress", ress)
-      ress.forEach((res, idx) => {
+    ress.forEach((res, idx) => {
       this.imgDivDict[this.countryUltimateCodeList[idx]] = res
       res.src = `img/flags/${this.countryUltimateCodeList[idx]}@3x.png`
-
       })
-      console.log("imgs", this.imgDivDict)
+      // console.log("imgs", this.imgDivDict)
     })
   }
 
@@ -342,63 +341,22 @@ class Flags{
     })
     this.countryUltimateCodeList = this.countryCodeList.slice()
 
-    console.log(this.countryUltimateCodeList)
+    // console.log(this.countryUltimateCodeList)
   }
 
   makeImage(name) {
     return new Promise((resolve) => {
-      console.log(`${name} img.onload`)
+      // console.log(`${name} img.onload`)
       this.img_element = document.createElement("img")
-      // this.img_element.className = `flags`
-      // this.img_element.innerHTML = name
       resolve(this.img_element)
     })
   }
   
   chengeFlags(iso2){
-    // console.log(this.img_element)
-    // this.img_element.src = `img/flags/${iso2}@3x.png`
-    // this.flugContainer.removeChild(this.flugContainer.firstChild)
     this.flugContainer.innerHTML = ''
-    // if (this.flugContainer.hasChildNodes()) {
-    //   this.flugContainer.removeChild(this.flugContainer.firstChild)
-    // } 
     this.flugContainer.appendChild(this.imgDivDict[iso2])
-    // console.log(this.img[0])
   }
-    // this.img[0].replaceWith(this.imgDivDict[iso2])
-    // return new Promise((resolve, reject) => {
-    //   if (iso2) {
 
-    //     this.div_element.onload = () => {
-    //     resolve()
-    //     }
-    //     this.div_element.src = `img/flags/${iso2}@3x.png`
-    //     this.img[0].replaceWith(div_element)
-    //   } else {
-    //     resolve()
-    //   }
-    // })
-    // return new Promise((resolve, reject) => {
-    //   if (iso2) {
-
-    //     this.img[0].onload = () => {
-    //     resolve()
-    //     }
-    //     this.img[0].src = `img/flags/${iso2}@3x.png`
-    //     // this.img[0].replaceWith(div_element)
-    //   } else {
-    //     resolve()
-    //   }
-    // })
-  // }
-  // if (iso2){
-  //   this.img[0].src = `img/flags/${iso2}@3x.png`
-  // }
-
-  clearFlag(){
-    this.img[0].src = ""
-  }
 }
 const flags = new Flags
 
@@ -487,7 +445,133 @@ class RunTheApp{
       // console.log('stop')
       clearInterval(this.Playinterval)
     })
-    }
+  }
 }
 
 const runApp = new RunTheApp()
+
+class SearchBtnEvent{
+  constructor(countryUltimateList,geojson_poly){
+    this.textbox = document.getElementById("inText");
+    this.searchBtn = document.getElementById('searchBtn')
+    this.searchBtnClickEvent()
+    this.list=countryUltimateList
+    this.geojson_poly = geojson_poly
+    // console.log('serch:'+countryUltimateList)
+  }
+
+  searchBtnClickEvent(){
+    this.searchBtn.addEventListener('click',() =>{
+      this.inputValue = this.textbox.value;
+      SetMyMap.geojson_poly.eachLayer((layer) => {
+        layer.setStyle({
+          stroke: true,
+          color: "#666",
+          weight: 1,
+          fillOpacity: 0.8,
+          fillColor: "gray",
+            })
+        // if (this.inputValue == layer.feature.properties.jp_name ) {
+        if (layer.feature.properties.jp_name.indexOf(this.inputValue) !== -1 ) {
+          layer.setStyle({
+            fillColor: "red",
+            fillOpacity: 1,
+          })
+          SetMyMap.mymap.setView([layer.feature.properties.lat, layer.feature.properties.lon],4) 
+          // layer.bindPopup(layer.feature.properties.jp_name)
+        }
+      })
+    })
+  }
+
+  async _zoomClickFeature(e) {//クリックした国をハイライトしてズーム
+    this.geojson_poly.setStyle({
+      fillOpacity: 0.6,
+    })
+    await e.target.setStyle({
+      fillOpacity: 0.2,
+      stroke: true,
+    })
+    return await 
+    this.mymap.setView([e.target.feature.properties.lat, e.target.feature.properties.lon],4) 
+  }
+}
+
+class searchVue{
+  constructor(){
+    this.search.mount("#search")
+  }
+  search = Vue.createApp({
+    data() {
+      return {
+        inputValue: "",
+        searchItems: [],
+        textError:'2文字以上で入力してください。'
+      }
+    },
+    computed:{
+      isInValidName(){
+        //文字列が2文字以上かチェックする
+        return this.inputValue.length < 2 && this.inputValue.length > 0;
+      },
+      validName(){
+        return this.inputValue.length > 1;
+      } 
+    },
+    methods: {
+      clearItems(){
+        this.searchItems=[]
+      },
+      searchBtnClick() {
+        this.searchItems=[]
+        if (!(this.inputValue.length > 1)) {
+          return
+        }
+        // this.searchItems.push({
+        //   text: this.inputValue
+        // })
+        // console.log(this.searchItems)
+        SetMyMap.geojson_poly.eachLayer((layer) => {
+          if (layer.feature.properties.jp_name.indexOf(this.inputValue)!= -1){
+            this.searchItems.push({
+              text: layer.feature.properties.jp_name
+            })
+          }
+        })
+        // this.inputValue.forEach(word =>{
+        // })
+        this.inputValue = ""
+      },
+      resultCandidate(){
+        this.searchItems.push({
+          text: this.inputValue
+        })
+        // console.log(this.searchItems)
+        // this.inputValue = ""
+        console.log(this.searchItems)
+        this.inputValue = ""
+
+      },
+      resultClick(){
+        this.searchItems=[]
+        SetMyMap.geojson_poly.eachLayer((layer) => {
+          layer.setStyle({
+            stroke: true,
+            color: "#666",
+            weight: 1,
+            fillOpacity: 0.8,
+            fillColor: "gray",
+              })
+          if (layer.feature.properties.jp_name.indexOf(this.searchItems['0']['text']) !== -1 ) {
+            layer.setStyle({
+              fillColor: "red",
+              fillOpacity: 1,
+            })
+            SetMyMap.mymap.setView([layer.feature.properties.lat, layer.feature.properties.lon],4) 
+          }
+        })
+      }
+    }
+  })
+}
+const search = new searchVue()

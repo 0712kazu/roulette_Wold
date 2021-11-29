@@ -16,6 +16,9 @@
   <link rel="stylesheet" href="css/L.Control.ZoomLabel.css" />
   <script src="js/L.Control.ZoomLabel.js"></script>
   <!-- plugin -->
+  <!-- vue -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <!-- vue -->
   <link rel="stylesheet" media="screen" href="css/styles.css">
   
 </head>
@@ -34,12 +37,22 @@
     <img src='' alt="no data">
   </div>
   <div id="mapid"></div>
+<!-- vue component -->
+<div class="searchArea" id="search">
+  <input v-model="inputValue" placeholder="国名入力" class="searchText">
+  <div class="searchButton" v-on:click="searchBtnClick">
+    <span>国名検索</span>
+  </div>
+  <div class='searchResult'>
+    <p v-show="isInValidName" class="errorText">{{textError}}</p>
+    <p v-show="validName" v-on:click="resultClick" v-for="item in searchItems" class='resultItem'>{{ item.text }}</p>
+  </div>
+</div>
+<!-- vue component -->
   <p class="terms_of_service">ポリゴンデータ：「World Borders Dataset（http://thematicmapping.org/downloads/world_borders.php）を加工して作成<br>
   ピン及び国旗画像：アマノ技研様公開データを使用（首都座標データ、国旗画像）<br>
   国境等の検査はできておりませんのでご了承ください。</p>
   <script src="countryPoly.js"></script>
   <script src="js/roulette.js"></script>
-  <!-- <script src="js/roulette_bk.js"></script> -->
-
 </body>
 </html>
