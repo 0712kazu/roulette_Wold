@@ -1,6 +1,6 @@
 # roulette_World  
 
-[プレビュー]（https://0712kazu.github.io/roulette_World/index.html）  
+[プレビュー](https://0712kazu.github.io/roulette_World/index.html)  
   
 5秒以内に国名を当てるゲームです。  
 - ポリゴンデータ：「[World Borders Dataset]（http://thematicmapping.org/downloads/world_borders.php）」を加工して作成  
