@@ -372,6 +372,7 @@ class RunTheApp{
     // this._stopAuto()
     this.autoTrigger = 1 
     this.pushTrigger = 1
+    this.coutDownTrigger = 1
   }
   _speakerBtnEvents(){
     this.speacker.addEventListener("click", () => {
@@ -394,6 +395,7 @@ class RunTheApp{
     selectcountryInstance.removeMarker()
     selectcountryInstance.clearRouletteText()
     // flags.clearFlag()
+    this.coutDownTrigger = 2
     this.btn.classList.add("disabled")
     console.log('autoTrigger:'+this.autoTrigger)
     if(this.autoTrigger === 1){
@@ -423,6 +425,7 @@ class RunTheApp{
       
       window.setTimeout(() => {
         //答えが出てもとに戻る
+        this.coutDownTrigger = 1
         this.pushTrigger = 1
         if(this.autoTrigger != 2){
           this.btn.classList.remove("disabled")
@@ -462,7 +465,12 @@ class RunTheApp{
         clearInterval(this.Playinterval)
         this.autoPlayBtn.innerHTML='Auto'
         this.autoPlayBtn.style.backgroundColor='rgb(161, 161, 161)'
-        this.autoPlayBtn.classList.add("disabledAuto")
+        if(this.coutDownTrigger != 2){
+          this.btn.classList.remove("disabled")
+          this.autoPlayBtn.classList.remove("disabledAuto")
+        }else{
+          this.autoPlayBtn.classList.add("disabledAuto")
+        }
       }
     })
   }
