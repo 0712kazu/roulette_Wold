@@ -369,7 +369,9 @@ class RunTheApp{
     this._rouletteBtnEvents()
     this._speakerBtnEvents()
     this._playAuto()
-    this._stopAuto()
+    // this._stopAuto()
+    this.autoTrigger = 1 
+    this.pushTrigger = 1
   }
   _speakerBtnEvents(){
     this.speacker.addEventListener("click", () => {
@@ -393,6 +395,14 @@ class RunTheApp{
     selectcountryInstance.clearRouletteText()
     // flags.clearFlag()
     this.btn.classList.add("disabled")
+    console.log('autoTrigger:'+this.autoTrigger)
+    if(this.autoTrigger === 1){
+      this.pushTrigger = 2
+    }
+    if(this.pushTrigger === 2){
+      this.autoPlayBtn.classList.add("disabledAuto")
+    }
+    
     SetMyMap.setViewCenter()
     this.interval = window.setInterval(() => {
       selectcountryInstance.clearColorSelectPoly()
@@ -410,10 +420,14 @@ class RunTheApp{
       selectcountryInstance.countDown()
       selectcountryInstance.clearRouletteText()
       selectcountryInstance.zoomLastSelectedCountry()
-
+      
       window.setTimeout(() => {
         //答えが出てもとに戻る
-        this.btn.classList.remove("disabled")
+        this.pushTrigger = 1
+        if(this.autoTrigger != 2){
+          this.btn.classList.remove("disabled")
+          this.autoPlayBtn.classList.remove("disabledAuto")
+        }
         selectcountryInstance.viewLastcountry()
         SetMyMap.setViewCenter()
         clearInterval(audio.loop)
@@ -432,18 +446,24 @@ class RunTheApp{
   
   _playAuto(){
     this.autoPlayBtn.addEventListener("click", () => {
-      this._roulette()
-      // console.log('auto')
-      this.Playinterval = window.setInterval(() => {
+      console.log(this.autoTrigger)
+      if(this.autoTrigger === 1){
+        this.autoTrigger = 2
         this._roulette()
-      },10000)
-    })
-  }
-  
-  _stopAuto(){
-    this.autoStopBtn.addEventListener("click", () => {
-      // console.log('stop')
-      clearInterval(this.Playinterval)
+        this.autoPlayBtn.innerHTML='Stop'
+        this.autoPlayBtn.style.backgroundColor='#ffb6c1'
+        // this.btn.classList.add("disabled")
+        // console.log('auto')
+        this.Playinterval = window.setInterval(() => {
+          this._roulette()
+        },10000)
+      }else{
+        this.autoTrigger = 1
+        clearInterval(this.Playinterval)
+        this.autoPlayBtn.innerHTML='Auto'
+        this.autoPlayBtn.style.backgroundColor='rgb(161, 161, 161)'
+        this.autoPlayBtn.classList.add("disabledAuto")
+      }
     })
   }
 }
@@ -512,48 +532,42 @@ class searchVue{
     computed:{
       isInValidName(){
         //文字列が2文字以上かチェックする
-        return this.inputValue.length < 2 && this.inputValue.length > 0;
+        return this.inputValue.length < 2;
       },
       validName(){
         return this.inputValue.length > 1;
       } 
     },
+    watch:{
+      inputValue(){
+        if(this.inputValue.length < 2){
+          this.searchItems=[]
+        }
+        else{
+          this.searchBtnClick()
+        }
+      }
+    },
     methods: {
-      clearItems(){
-        this.searchItems=[]
-      },
       searchBtnClick() {
-        this.searchItems=[]
+        // this.searchItems=[]
         if (!(this.inputValue.length > 1)) {
           return
         }
-        // this.searchItems.push({
-        //   text: this.inputValue
-        // })
-        // console.log(this.searchItems)
         SetMyMap.geojson_poly.eachLayer((layer) => {
-          if (layer.feature.properties.jp_name.indexOf(this.inputValue)!= -1){
-            this.searchItems.push({
-              text: layer.feature.properties.jp_name
-            })
+          if (layer.feature.properties.jp_name){
+            if (layer.feature.properties.jp_name.indexOf(this.inputValue)!= -1){
+              this.searchItems.push({
+                text: layer.feature.properties.jp_name
+              })
+              // console.log(this.searchItems)
+            }
           }
         })
-        // this.inputValue.forEach(word =>{
-        // })
-        this.inputValue = ""
       },
-      resultCandidate(){
-        this.searchItems.push({
-          text: this.inputValue
-        })
-        // console.log(this.searchItems)
-        // this.inputValue = ""
-        console.log(this.searchItems)
-        this.inputValue = ""
-
-      },
-      resultClick(){
-        this.searchItems=[]
+      resultClick(item){
+        // this.searchItems=[]
+        // console.log(item)
         SetMyMap.geojson_poly.eachLayer((layer) => {
           layer.setStyle({
             stroke: true,
@@ -562,15 +576,17 @@ class searchVue{
             fillOpacity: 0.8,
             fillColor: "gray",
               })
-          if (layer.feature.properties.jp_name.indexOf(this.searchItems['0']['text']) !== -1 ) {
-            layer.setStyle({
-              fillColor: "red",
-              fillOpacity: 1,
-            })
-            SetMyMap.mymap.setView([layer.feature.properties.lat, layer.feature.properties.lon],4) 
+          if (layer.feature.properties.jp_name){
+            if (layer.feature.properties.jp_name.indexOf(item.text) !== -1 ) {
+              layer.setStyle({
+                fillColor: "red",
+                fillOpacity: 1,
+              })
+              SetMyMap.mymap.setView([layer.feature.properties.lat, layer.feature.properties.lon],4) 
+            }
           }
         })
-      }
+      },
     }
   })
 }

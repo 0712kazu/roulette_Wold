@@ -57,7 +57,6 @@ html, body {
   position: absolute;
   width: 40px;
   height: 30px;
-  /* border: solid 1px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +66,6 @@ html, body {
   font-size: 14px;
   color: #3c3d3e;
   font-weight: bold;
-  /* box-shadow: 2; */
   z-index: 302;
   text-align: center;
   cursor: pointer;
@@ -77,11 +75,10 @@ html, body {
   user-select: none;
 
 }
-.auto_stop_btn{
+/* .auto_stop_btn{
   position: absolute;
   width: 40px;
   height: 30px;
-  /* border: solid 1px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,16 +88,15 @@ html, body {
   font-size: 14px;
   color: #3c3d3e;
   font-weight: bold;
-  /* box-shadow: 2; */
   z-index: 302;
   text-align: center;
   cursor: pointer;
-  top: 210px;
   left: 1%;
   border: none;
   user-select: none;
-
-}
+  top: 210px;
+  
+} */
 
 .flags{
   position: absolute;
@@ -186,12 +182,11 @@ a.btn-border {
   background: rgb(161, 161, 161);
 }
 
-/* a.btn-border:hover {
-  color: #fff;
-  background: #000;
-} */
-
 .disabled{
+  pointer-events: none;
+  opacity: 0.5;
+}
+.disabledAuto{
   pointer-events: none;
   opacity: 0.5;
 }
@@ -208,7 +203,7 @@ a.btn-border {
   z-index: 305;
 }
 
-/* --- 検索全体のBOX (サンプル用)--- */
+/* --- 検索全体のBOX */
 .searchArea{
   position: absolute;
   top: 2px;
@@ -221,7 +216,7 @@ a.btn-border {
   /* line-height    : 0;                  標準の行高さ          */
   z-index: 305;
 }
- 
+
  /* --- テキスト入力欄のSTYLE設定 --- */
 .searchArea .searchText {
   display        : block;              /* ブロック化            */
@@ -232,31 +227,27 @@ a.btn-border {
   margin         : 0;                  /* 外余白                */
   padding        : 0 12px;             /* 内余白                */
   border         : 2px solid #999999;  /* 枠線　幅,実践,色      */
-  border-radius  : 12px 0 0 12px;      /* 左上下の角丸          */
-  color          : #333;               /* 文字色                */
+  border-radius  : 12px 0 0 12px;      /* 左上下の角丸         */
+  color          : #333;               /* 文字色               */
   outline        : 0;                  /* 入力の薄い枠を非表示  */
   font-size      : 12px;               /* フォントサイズ        */
 }
- 
- /* --- 検索ボタン欄のSTYLE設定 --- */
-.searchArea .searchButton {
-  float          : left;               /* 横並び                */
-  box-sizing     : border-box;         /* 枠線,余白を含んだ長さ */
-  height         : 24px;               /* 入力の高さ            */
-  margin         : 0;                  /* 外余白                */
-  padding        : 6px 10px;           /* 内余白                */
-  border         : none;               /* 枠線　幅,実践,色      */
-  border-radius  : 0 12px 12px 0;      /* 右上下の角丸          */
-  background     : #999999;            /* ボタンの色            */
-  color          : #fff;               /* 文字色                */
-  cursor         : pointer;            /* カーソル設定          */
-  line-height    : 12px;               /* 1行の高さ             */
-  font-size      : 12px;               /* フォントサイズ        */
-}
 
- /* --- 検索ボタン欄にフォーカスか来たとき --- */
-.searchArea .searchText:focus {
-  background     : #cfe7ff;            /* フォーカス時の背景色  */
+ /* --- 検索ボタン欄のSTYLE設定 --- */
+.searchArea .clearButton { 
+  float          : left;                  
+  box-sizing     : border-box;        
+  height         : 24px;                  
+  margin         : 0;                
+  padding        : 6px 10px;         
+  border         : none;            
+  border-radius  : 0 12px 12px 0;    
+  background     : #999999;           
+  color          : #333;         
+  cursor         : pointer;         
+  line-height    : 12px;          
+  font-size      : 15px;          
+  font-weight: bold;
 }
 
 /* --- IEの入力エリア右側×消し -------------------------*/
@@ -269,17 +260,26 @@ a.btn-border {
   display: flex;
   flex-direction: column;
   white-space: nowrap;
+  max-height: 200px;
+  width: 200px;
+  overflow: auto;
 }
 .resultItem {
-  cursor: pointer;
   background-color: rgba(255, 255, 255, 0.705);
-  padding-top: 10px;
-  /* height: 10px; */
+  padding-top: 1px;
+  padding-bottom: 1px;
   font-weight: normal;
-  font-size: 10px;
+  font-size: 12px;
   margin: 0;
+  user-select: none;
+}
+.resultItem:hover{
+  cursor: pointer;
+  background-color: rgba(238, 13, 88, 0.295);
 }
 .errorText {
+  font-size: 10px;
   margin: 0;
+  user-select: none;
 }
 

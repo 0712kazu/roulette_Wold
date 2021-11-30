@@ -31,21 +31,21 @@
   <div class="roulette_container" id="roulette"></div>
   <div id="belongAnswer"></div>
   <div class="zoom_feature_all_btn" id="zoomstyle">全体</div>
-  <div class="auto_play_btn" id="auto_play">auto</div>
-  <div class="auto_stop_btn" id="auto_stop">stop</div>
+  <div class="auto_play_btn" id="auto_play">Auto</div>
+  <!-- <div class="auto_stop_btn" id="auto_stop">stop</div> -->
   <div class='flags' id= 'flug_conteiner'>
     <img src='' alt="no data">
   </div>
   <div id="mapid"></div>
 <!-- vue component -->
 <div class="searchArea" id="search">
-  <input v-model="inputValue" placeholder="国名入力" class="searchText">
-  <div class="searchButton" v-on:click="searchBtnClick">
-    <span>国名検索</span>
+  <input v-model="inputValue" placeholder="国名検索" class="searchText">
+  <div class="clearButton" v-on:click="inputValue=''">
+    <span>×</span>
   </div>
   <div class='searchResult'>
     <p v-show="isInValidName" class="errorText">{{textError}}</p>
-    <p v-show="validName" v-on:click="resultClick" v-for="item in searchItems" class='resultItem'>{{ item.text }}</p>
+    <p v-show="validName" v-on:click="resultClick(item)" v-for="item in searchItems" class='resultItem' >{{ item.text }}</p>
   </div>
 </div>
 <!-- vue component -->
