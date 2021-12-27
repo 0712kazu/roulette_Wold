@@ -397,7 +397,7 @@ class RunTheApp{
     // flags.clearFlag()
     this.coutDownTrigger = 2
     this.btn.classList.add("disabled")
-    console.log('autoTrigger:'+this.autoTrigger)
+    // console.log('autoTrigger:'+this.autoTrigger)
     if(this.autoTrigger === 1){
       this.pushTrigger = 2
     }
@@ -449,7 +449,7 @@ class RunTheApp{
   
   _playAuto(){
     this.autoPlayBtn.addEventListener("click", () => {
-      console.log(this.autoTrigger)
+      // console.log(this.autoTrigger)
       if(this.autoTrigger === 1){
         this.autoTrigger = 2
         this._roulette()
@@ -585,7 +585,7 @@ class searchVue{
             fillColor: "gray",
               })
           if (layer.feature.properties.jp_name){
-            if (layer.feature.properties.jp_name.indexOf(item.text) !== -1 ) {
+            if (layer.feature.properties.jp_name === item.text ) {
               layer.setStyle({
                 fillColor: "red",
                 fillOpacity: 1,
