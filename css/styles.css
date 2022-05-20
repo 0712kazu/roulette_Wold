@@ -75,28 +75,6 @@ html, body {
   user-select: none;
 
 }
-/* .auto_stop_btn{
-  position: absolute;
-  width: 40px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #9e9a9a;
-  border-radius: 4px;
-  padding: 2px;
-  font-size: 14px;
-  color: #3c3d3e;
-  font-weight: bold;
-  z-index: 302;
-  text-align: center;
-  cursor: pointer;
-  left: 1%;
-  border: none;
-  user-select: none;
-  top: 210px;
-  
-} */
 
 .flags{
   position: absolute;
@@ -282,4 +260,237 @@ a.btn-border {
   margin: 0;
   user-select: none;
 }
-
+@media (min-width: 400px) {
+  .zoom_feature_all_btn {
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    /* border: solid 1px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9e9a9a;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 14px;
+    color: #3c3d3e;
+    font-weight: bold;
+    /* box-shadow: 2; */
+    z-index: 303;
+    text-align: center;
+    cursor: pointer;
+    top: 140px;
+    left: 1%;
+    border: none;
+    user-select: none;
+  }
+  
+  .auto_play_btn {
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9e9a9a;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 14px;
+    color: #3c3d3e;
+    font-weight: bold;
+    z-index: 302;
+    text-align: center;
+    cursor: pointer;
+    top: 175px;
+    left: 1%;
+    border: none;
+    user-select: none;
+  
+  }
+  
+  .flags{
+    position: absolute;
+    z-index: 305;
+    top: 340px;
+    height: 90px;
+    right: 1%;
+  }
+  
+  #count_down {
+    position: absolute;
+    font-size: 200px;
+    /* float: left; */
+    top: 10%;
+    left: 0;
+    right: 8%;
+    margin: auto;
+    text-align: center;
+    opacity: 0.4;
+    z-index: 400;
+    pointer-events: none;
+  }
+  
+  #speaker_icon {
+    position: absolute;
+    top: 115px;
+    height: 50px;
+    right: 1%;
+    cursor: pointer;
+    z-index: 300;
+  }
+  
+  .roulette_container {
+    right: 1%;
+    top: 220px;
+    /* margin-top: 100px; */
+    font-family: "游明朝", YuMincho,"メイリオ",Meiryo,serif,sans-serif;
+    font-weight: bold;
+    position: absolute;
+    font-size: 32px;
+    z-index: 302;
+    user-select: none;
+  }
+  
+  #belongAnswer {
+    right: 1%;
+    top: 280px;
+    /* margin-top: 100px; */
+    font-family: "游明朝", YuMincho,"メイリオ",Meiryo,serif,sans-serif;
+    font-weight: bold;
+    position: absolute;
+    font-size: 32px;
+    z-index: 302;
+    user-select: none;
+  }
+  
+  .select {
+    fill: rgb(255, 0, 0);
+    opacity: 1;
+  }
+  
+  .btn
+  {
+    position: absolute;
+    top: 120px;
+    right: 1%;
+    width: 50px;
+    margin-top: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #212529;
+    z-index: 301;
+    user-select: none;
+  }
+  
+  a.btn-border {
+    /* border: 1px solid #000; */
+    border-radius: 4px;
+    background: rgb(161, 161, 161);
+  }
+  
+  .disabled{
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .disabledAuto{
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  
+  .leaflet-layer element.style{ 
+    opacity: 0.1;
+  } 
+  
+  .terms_of_service{
+    position: absolute;
+    left: 27%;
+    font-size: 4pt;
+    top: 90%;
+    z-index: 305;
+  }
+  
+  /* --- 検索全体のBOX */
+  .searchArea{
+    position: absolute;
+    top: 2px;
+    right: 40%;
+    width          : 290px;              /* BOXの幅               */
+    height         : 24px;               /* BOXの高さ             */
+    margin         : auto;               /* サンプルを中心に寄せ  */
+    letter-spacing : 0.1em;              /* 文字間隔              */
+    font-weight    : bold;               /* 太字                  */
+    /* line-height    : 0;                  標準の行高さ          */
+    z-index: 305;
+  }
+  
+   /* --- テキスト入力欄のSTYLE設定 --- */
+  .searchArea .searchText {
+    display        : block;              /* ブロック化            */
+    float          : left;               /* 横並び                */
+    box-sizing     : border-box;         /* 枠線,余白を含んだ長さ */
+    height         : 24px;               /* 入力の高さ            */
+    width          : 170px;              /* 入力の幅              */
+    margin         : 0;                  /* 外余白                */
+    padding        : 0 12px;             /* 内余白                */
+    border         : 2px solid #999999;  /* 枠線　幅,実践,色      */
+    border-radius  : 12px 0 0 12px;      /* 左上下の角丸         */
+    color          : #333;               /* 文字色               */
+    outline        : 0;                  /* 入力の薄い枠を非表示  */
+    font-size      : 12px;               /* フォントサイズ        */
+  }
+  
+   /* --- 検索ボタン欄のSTYLE設定 --- */
+  .searchArea .clearButton { 
+    float          : left;                  
+    box-sizing     : border-box;        
+    height         : 24px;                  
+    margin         : 0;                
+    padding        : 6px 10px;         
+    border         : none;            
+    border-radius  : 0 12px 12px 0;    
+    background     : #999999;           
+    color          : #333;         
+    cursor         : pointer;         
+    line-height    : 12px;          
+    font-size      : 15px;          
+    font-weight: bold;
+  }
+  
+  /* --- IEの入力エリア右側×消し -------------------------*/
+  .searchArea .searchText::-ms-clear {
+    display        : none;               /* ×を消す              */
+  }
+  .searchResult {
+    position: absolute;
+    top: 25px;
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    max-height: 200px;
+    width: 200px;
+    overflow: auto;
+  }
+  .resultItem {
+    background-color: rgba(255, 255, 255, 0.705);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-weight: normal;
+    font-size: 12px;
+    margin: 0;
+    user-select: none;
+  }
+  .resultItem:hover{
+    cursor: pointer;
+    background-color: rgba(238, 13, 88, 0.295);
+  }
+  .errorText {
+    font-size: 10px;
+    margin: 0;
+    user-select: none;
+  }
+  
+}
